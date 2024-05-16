@@ -18,7 +18,17 @@ module.exports = {
             });
         }
         res.json(json);
+
     },
+    buscarReferer: async (req, res)=>{
+        let json = {error: '', result:[]};
+        let logs = await CreativeService.buscarReferer(req.params.referer);
+
+        if (logs){
+            json.result = logs;
+        }
+        res.json(json);
+    }
 
     
 }

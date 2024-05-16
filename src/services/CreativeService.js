@@ -11,6 +11,18 @@ module.exports = {
                 }
             });
         });
+    },
+    buscarReferer: (referer) =>{
+        return new Promise((aceito,rejeitado)=>{
+            db.query('SELECT * FROM logs WHERE referer=?',[referer],(error,results)=>{
+                if(error){
+                    rejeitado(error);
+                }else{
+                    aceito(results);
+                }
+            });
+        });
     }
+
     
 };

@@ -6,7 +6,7 @@ const CreativeController = require('./controllers/CreativeController');
 
 router.get('/logs', CreativeController.logsAll);
 
-// router.get('/clientes/:id', CreativeController.buscarPorId);
+router.get('/logs/:referer', CreativeController.buscarReferer);
 
 
 module.exports = router;
