@@ -28,9 +28,13 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
 
 ## Link p/ Apoio:
 
+  Assista o vídeo: https://apiminio.creativegrow.dev.br/aulascreativegrow/api_iuri.mp4
+
   Teste sua API Acesse: https://resttesttest.com/
 
 ## Informações Importantes:
+
+
 
 ## Vamos instalar?
 
