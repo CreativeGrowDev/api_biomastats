@@ -34,9 +34,25 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
 
 ## Vamos instalar?
 
+  Clone o projeto.
+
+  Crie o banco de dados MySQL e após crie o usuário para o banco.
+
+  Dê todas as permissões ao usuário do banco.
+
+  Crie o MySQL Remote %
+
+  Agora no terminal faremos a instalação...
+
   Instalando as dependências do projeto:
 
       npm install
+  
+  Instalando a base de dados (migrations):
+
+      npx sequelize-cli db:migrate
+
+      
   
 
 
