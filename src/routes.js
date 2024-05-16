@@ -4,9 +4,9 @@ const router = express.Router();
 const CreativeController = require('./controllers/CreativeController');
 
 
-router.get('/clientes', CreativeController.buscarTodos);
+router.get('/logs', CreativeController.logsAll);
 
-router.get('/clientes/:id', CreativeController.buscarPorId);
+// router.get('/clientes/:id', CreativeController.buscarPorId);
 
 
 module.exports = router;

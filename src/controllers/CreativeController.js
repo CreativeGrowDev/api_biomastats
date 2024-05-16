@@ -1,27 +1,24 @@
 const CreativeService = require('../services/CreativeService');
 
 module.exports = {
-    buscarTodos: async (req,res)=> {
+    logsAll: async (req,res)=> {
         let json = {error: '', result:[]};
-        let clientes = await CreativeService.buscarTodos();
+        let logs = await CreativeService.logsAll();
 
-        for(let i in clientes){
+        for(let i in logs){
             json.result.push({
-                id: clientes[i].id,
-                nome: clientes[i].nome,
-                cpf_cnpj: clientes[i].cpf_cnpj              
+                id: logs[i].id,
+                url: logs[i].url,
+                service: logs[i].service,
+                created_at: logs[i].created_at,
+                updated_at: logs[i].updated_at,
+                ip: logs[i].ip,
+                user_agent: logs[i].user_agent,
+                referer: logs[i].referer,              
             });
         }
         res.json(json);
     },
 
-    buscarPorId: async (req, res) =>{
-        let json = {error: '', result:{}};
-        let idcliente = req.params.id;
-        let cliente = await CreativeService.buscarPorId(idcliente);
-        if(cliente){
-            json.result = cliente;
-        }
-        res.json(json);
-    }
+    
 }

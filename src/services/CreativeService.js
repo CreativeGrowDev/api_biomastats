@@ -1,9 +1,9 @@
 const { buscarTodos } = require('../controllers/CreativeController');
 const db = require('../db');
 module.exports = {
-    buscarTodos: () =>{
+    logsAll: () =>{
         return new Promise((aceito,rejeitado)=>{
-            db.query('SELECT * FROM clientes',(error,results)=>{
+            db.query('SELECT * FROM logs',(error,results)=>{
                 if(error){
                     rejeitado(error);
                 }else{
@@ -11,16 +11,6 @@ module.exports = {
                 }
             });
         });
-    },
-    buscarPorId: (id) =>{
-        return new Promise((aceito,rejeitado)=>{
-            db.query('SELECT * FROM clientes WHERE id =?',[id],(error,results)=>{
-                if(error){
-                    rejeitado(error);
-                }else{
-                    aceito(results);
-                }
-            });
-        });
-    },
+    }
+    
 };
