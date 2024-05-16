@@ -11,7 +11,7 @@
 
 </div>
   
-<div align="center"><img src="https://apiminio.creativegrow.dev.br/aulascreativegrow/logo.png" style="width: 80% !important;"></div>
+<div align="center"><img src="https://apiminio.creativegrow.dev.br/aulascreativegrow/Creative%20Grow%281920%20x%20369%20px%29.png" style="width: 80% !important;"></div>
 
 ## Para Instalação você precisa:
 
