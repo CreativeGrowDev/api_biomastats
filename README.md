@@ -36,24 +36,17 @@ Acesse: https://ead.maanabee.com.br/mod/forum/discuss.php?d=2#p2
     cd /home && git clone https://github.com/ronandesign/Install_WhaticketSaaS_Comunidade.git
 
 
-## Consultoria e contato:
+## Assessoria e Contato:
 
-    PATRULHA SOLUTIONS BUSINESS TECHNOLOGY LTDA
+    CREATIVEGROW | GRUPO PIGA ASSESSORIA EMPRESARIAL LTDA
 
-    Fone: 14 3333-1488 (WhatsApp)
+    Fone: 14 3042-9678 (WhatsApp)
 
-    Email: contato@patrulhasolutions.com.br
-
-<div align="center">
-    <h3>Atendimento online!</h3>
-  <a href="https://1378.3cx.cloud/ronanferreira" target="_blank" rel="noopener noreferrer">
-    <img src="./public/images/online.png" style="width: 25% !important;">
-  </a>
-</div>
+    Email: contato@creativegrow.dev.br
 
 <div align="center">
     <h3>Agendar atendimento:</h3>
-  <a href="https://crm.patrulhasolutions.com.br/appointly/appointments_public/form?col=col-md-8+col-md-offset-2" target="_blank" rel="noopener noreferrer">
+  <a href="https://gestao.creativegrow.dev.br/appointly/appointments_public/form?col=col-md-8+col-md-offset-2" target="_blank" rel="noopener noreferrer">
     <img src="https://www.spsp.org.br/wp-content/uploads/2019/03/Icone-Agenda-Calendario.png" style="width: 25% !important;">
   </a>
 </div></br>
