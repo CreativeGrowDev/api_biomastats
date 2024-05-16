@@ -53,9 +53,9 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
   Agora no terminal faremos a instalação...
 
   Obs. Caso sua hospedagem não dê acesso root ao terminal, crie o banco no seu domínio onde irá
-  intalar os fontes... Faça o clone em seu desktop... Configure o conf.env para seu ambiente online e 
+  instalar os fontes... Faça o clone em seu desktop... Configure o conf.env para seu ambiente online e 
   execute a instalação a baixo em seu VSCode na sua máquina local... Após instalar e executar as migrations
-  compacte em formato ZIP e faça o upload para a raiz pública do seu domínio.
+  compacte em formato ZIP e faça o upload para a raiz pública do seu domínio... Agora é só extrair!
 
   Instalando as dependências do projeto:
 
