@@ -8,5 +8,7 @@ router.get('/logs', CreativeController.logsAll);
 
 router.get('/logs/:referer', CreativeController.buscarReferer);
 
+router.post('/logs', CreativeController.create);
+
 
 module.exports = router;

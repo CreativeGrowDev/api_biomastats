@@ -28,7 +28,35 @@ module.exports = {
             json.result = logs;
         }
         res.json(json);
-    }
+    },
+    
+    create: async (req, res)=>{
+        let json = {error: '', result:{}};
+
+        let url = req.body.url;
+        let user_agent = req.body.user_agent;
+        let referer = req.body.referer;
+        let ip = req.body.ip;
+        let service = req.body.service;
+        let created_at = req.body.created_at;
+
+        if (url && user_agent && referer && ip && service && created_at){
+            let logId = await CreativeService.create(url, user_agent,referer,ip,service,created_at);
+            json.result = {
+                id: logId,
+                url: url,
+                user_agent: user_agent,
+                referer: referer,
+                ip: ip,
+                service: service,
+                created_at: created_at,
+                updated_at: created_at,
+            };
+        }else{
+            json.error = 'Dados inválidos';
+        }
+        res.json(json);
+    },
 
     
 }

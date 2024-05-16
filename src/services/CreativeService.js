@@ -1,4 +1,4 @@
-const { buscarTodos } = require('../controllers/CreativeController');
+const { buscarTodos, create } = require('../controllers/CreativeController');
 const db = require('../db');
 module.exports = {
     logsAll: () =>{
@@ -19,6 +19,19 @@ module.exports = {
                     rejeitado(error);
                 }else{
                     aceito(results);
+                }
+            });
+        });
+    },
+
+    create: (url, user_agent,referer,ip,service,created_at) =>{
+        return new Promise((aceito,rejeitado)=>{
+            db.query('INSERT INTO logs (url, user_agent,referer,ip,service,created_at) VALUES (?,?,?,?,?,?)',
+            [url, user_agent,referer,ip,service,created_at],(error,results)=>{
+                if(error){
+                    rejeitado(error);
+                }else{
+                    aceito(results.createId);
                 }
             });
         });
