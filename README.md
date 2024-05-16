@@ -15,11 +15,10 @@
 
 ## Para Instalação você precisa:
 
-Uma VPS Ubuntu 20.04 (Configuração recomendada: 3 VCPU's + 4 GB RAM)
+Uma VPS Ubuntu >= 20.04 (Configuração mínima recomendada: 1 VCPU's + 2 GB RAM)
+ou uma hospedagem cpanel
 
-Subdominio para Frontend
-
-Subdominio para API - backoffice
+Endereço: Domínio ou Subdominio
 
 Email válido para certificação SSL
 
@@ -27,13 +26,15 @@ Email válido para certificação SSL
 
 To install the SSL certificate, follow the **[instructions](https://certbot.eff.org/instructions?ws=other&os=ubuntufocal)** below.
 
-## Link p/ Página de Apoio
+## Link p/ Página de Apoio:
 
-Acesse: https://ead.maanabee.com.br/mod/forum/discuss.php?d=2#p2
+Acesse: https://#
+
+## Informações Importantes:
 
 ## Vamos instalar?
 
-    cd /home && git clone https://github.com/ronandesign/Install_WhaticketSaaS_Comunidade.git
+    
 
 
 ## Assessoria e Contato:
