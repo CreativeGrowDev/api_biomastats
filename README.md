@@ -26,9 +26,10 @@ Email válido para certificação SSL
 
 To install the SSL certificate, follow the **[instructions](https://certbot.eff.org/instructions?ws=other&os=ubuntufocal)** below.
 
-## Link p/ Página de Apoio:
+## Link p/ Apoio:
 
-Acesse: https://#
+ Teste sua API 
+  Acesse: https://resttesttest.com/
 
 ## Informações Importantes:
 
