@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Creative](https://img.shields.io/badge/ead-Maanabee-Yellow)](https://creativegrow.dev.br/cursos/) 
+[![Creative](https://img.shields.io/badge/ead-Creative-Yellow)](https://creativegrow.dev.br/cursos/) 
 [![License](https://img.shields.io/badge/license-GPL--3.0-orange)](./LICENSE)
 [![Suporte](https://img.shields.io/badge/atendimento-online-orange)](https://cloud.creativegrow.dev.br/call/kvhw5mn7)
 [![Agendamento](https://img.shields.io/badge/agendar-suporte-blue)](https://gestao.creativegrow.dev.br/appointly/appointments_public/form?col=col-md-8+col-md-offset-2)
