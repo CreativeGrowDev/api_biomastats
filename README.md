@@ -42,6 +42,14 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
 
   Crie o MySQL Remote %
 
+  No arquivo conf.env na raiz do projeto configure:
+
+      DB_NAME=api-iuri //nome do banco
+      DB_USER=root     //usuário do banco
+      DB_PASS=         //senha do banco 
+      DB_HOST=localhost //servidor do banco
+      DB_PORT=3306      //porta do banco
+
   Agora no terminal faremos a instalação...
 
   Instalando as dependências do projeto:
@@ -52,7 +60,7 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
 
       npx sequelize-cli db:migrate
 
-      
+
   
 
 
