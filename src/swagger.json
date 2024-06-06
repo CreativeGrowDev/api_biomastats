@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.0",    
+    "info":{
+        "title": "Bioma Stats API - CeMECA - Centro de Modelagem Estatística em Ciências Ambientais",
+        "description": "R package for land use and coverage analysis in Brazil (in development)",
+        "termsOfService": "https://www.cemeca.ufscar.br/dados-c%C3%B3digos-e-programas",
+        "license": {
+            "name": "CeMECA",
+            "url": "https://www.cemeca.ufscar.br/"
+        },
+        "version": "1.0.0",
+        "contact": {
+            "name": "API Bioma Stats - Support",
+            "email": "iuri@ufscar.br",
+            "url": "https://www.cemeca.ufscar.br/"
+        },
+        "x-logo": {
+            "url": "https://www.cemeca.ufscar.br/wp-content/uploads/2020/03/logo-cemeca-1.png",
+            "altText": "CeMECA"
+        },
+        "x-cemeca": {
+            "version": "1.0.0"
+        }        
+    },
+    "servers": [
+        {
+            "url": "http://localhost:9000/api",
+            "description": "Bioma Stats API - Homologação"            
+        },
+        {
+            "url": "https://biomastats.rgestor.com.br/api",
+            "description": "Bioma Stats API - Produção"            
+        }
+    ],
+
+    "paths":{
+        "/link":{
+            "post":{
+                "summary": "Buscar Link",
+                "description":"Nesta rota você informa os parâmetros (Fragmento e Ano) para receber o link",
+                "tags":["Links"],
+                "operationId": "getLogs",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Link"
+                            },
+                            "example": {
+                                "fragment": "1041",
+                                "year": "1985"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses":{
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                     "properties": {
+                                        "error":{
+                                             "type": "string",
+                                             "example": ""
+                                        },
+                                        "result": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "integer",
+                                                "example": 74463
+                                              },
+                                              "file_name": {
+                                                "type": "string",
+                                                "example": "coverage-frag-19-year-2021.tif"
+                                              },
+                                              "fragment": {
+                                                "type": "string",
+                                                "example": "19"
+                                              },
+                                              "year": {
+                                                "type": "string",
+                                                "example": "2021"
+                                              },
+                                              "info_id": {
+                                                "type": "string",
+                                                "example": "1FWAePDnEw29XMIj5P60dwnchXWbAdtFu"
+                                              },
+                                              "shareable_link": {
+                                                "type": "string",
+                                                "example": "https://drive.google.com/file/d/1FWAePDnEw29XMIj5P60dwnchXWbAdtFu/view?usp=drivesdk"
+                                              },
+                                              "md5_checksum": {
+                                                "type": "string",
+                                                "example": "6c2e062cd97823f5e63912b8b1b457a0"
+                                              },
+                                              "source": {
+                                                "type": "string",
+                                                "example": "MapBiomas 2023"
+                                              },
+                                              "type": {
+                                                "type": "string",
+                                                "example": "coverage"
+                                              },
+                                              "version": {
+                                                "type": "string",
+                                                "example": "collection-7-integration-v1"
+                                              },
+                                              "storage": {
+                                                "type": "string",
+                                                "example": "gdrive"
+                                              }
+                                            }
+                                        }
+                                    }
+                                   
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                        
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                        
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Link":{
+                "type": "object",
+                "properties":{
+                    "fragment": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
