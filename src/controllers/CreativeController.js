@@ -73,8 +73,17 @@ module.exports = {
                 const selectedLink = links[randomIndex];
                 json.result = selectedLink;
 
-                // Gravar o link selecionado na tabela 'sent-links'
-                await CreativeService.gravarLinkEnviado(selectedLink);
+            // Capturar o IP real do cliente e a URL da requisição
+            const requesterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+            const requestUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;                                                        
+
+                console.log("IP:", requesterIp);
+                console.log("URL:", requestUrl);
+                console.log("Link:", selectedLink);
+
+                // Gravar o link selecionado na tabela 'sent-links' com IP e URL
+                await CreativeService.gravarLinkEnviado(selectedLink, requesterIp, requestUrl);
+
 
                 return res.status(200).json(json);
             } else {

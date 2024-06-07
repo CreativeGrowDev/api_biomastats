@@ -49,15 +49,19 @@ module.exports = {
         });
     },
 
-    gravarLinkEnviado: (link) => {
+    gravarLinkEnviado: (link, requesterIp, requestUrl) => {
         return new Promise((resolve, reject) => {
-            const query = 'INSERT INTO `sent-links` (sent_datetime, shareable_link, file_name, storage, status) VALUES (?, ?, ?, ?, ?)';
+            const query = 'INSERT INTO `sent-links` (sent_datetime, shareable_link, file_name, storage, status, fragment, year, requester_ip, request_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
             const values = [
                 new Date(),
                 link.shareable_link,
                 link.file_name,
                 link.storage,
-                true // Assuming status is true when the link is sent
+                true, // Assuming status is true when the link is sent
+                link.fragment,
+                link.year,
+                requesterIp,
+                requestUrl
             ];
     
             db.query(query, values, (error, results) => {
