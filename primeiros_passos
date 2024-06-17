@@ -1,0 +1,5 @@
+# Acessando a API no swagger 
+https://biomastats.rgestor.com.br/api/api-docs/
+
+# usar no modo produção 
+# informar fragment_id e year, recebendo informações não sensíveis via JSON. 
