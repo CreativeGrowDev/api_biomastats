@@ -1,4 +1,4 @@
-<h1 align="center">API For Logging - Iuri Ferreira | CreativeGrow</h1>
+<h1 align="center">API Biomastats - ceMECA | CreativeGrow</h1>
 
 <div align="center">
 
