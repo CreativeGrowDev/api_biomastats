@@ -1,4 +1,4 @@
-const { buscarTodos, create } = require('../controllers/CreativeController');
+//const { buscarTodos, create } = require('../controllers/CreativeController');
 const db = require('../db');
 module.exports = {
     logsAll: () =>{
@@ -62,6 +62,29 @@ module.exports = {
                 link.year,
                 requesterIp,
                 requestUrl
+            ];
+    
+            db.query(query, values, (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    },
+
+    gravarRespostaApp: (shareable_link, file_name, storage, was_successful, requesterIp, request_application) => {
+        return new Promise((resolve, reject) => {
+            const query = 'INSERT INTO `res_app` (sent_datetime, shareable_link, file_name, storage, was_successful, requester_ip, request_application) VALUES (?, ?, ?, ?, ?, ?, ?)';
+            const values = [
+                new Date(),
+                shareable_link,
+                file_name,
+                storage,
+                was_successful, 
+                requesterIp,
+                request_application
             ];
     
             db.query(query, values, (error, results) => {

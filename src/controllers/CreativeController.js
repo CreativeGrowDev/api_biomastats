@@ -54,6 +54,36 @@ module.exports = {
         res.json(json);
     },
 
+    responseApp: async (req, res) => {
+        let json = { error: '', result: [] };
+        let shareable_link = req.body.shareable_link;
+        let file_name = req.body.file_name;
+        let storage = req.body.storage;
+        let was_successful = req.body.was_successful;
+        let request_application = req.body.request_application;
+
+        // Capturar o IP real do cliente e a URL da requisição
+        const requesterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+
+        if (!shareable_link || !file_name || !storage || !was_successful || !request_application) {
+            json.error = 'The parameters were not properly sent';
+            return res.status(400).json(json);
+        }
+
+        try {
+            console.log("IP:", requesterIp);
+            console.log("Link:", shareable_link);
+            // Records the system response after the test performed as a link
+            await CreativeService.gravarRespostaApp(shareable_link, file_name, storage, was_successful, requesterIp, request_application);
+            json.result = 'System response recorded';
+            return res.status(200).json(json);     
+
+        }   catch (error) {
+            json.error = 'Error fetching link: ' + error.message;
+            return res.status(500).json(json); // 500 Internal Server Error
+        }    
+    },
+
     buscarLink: async (req, res) => {
         let json = { error: '', result: [] };
         let fragment = req.body.fragment;

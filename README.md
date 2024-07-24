@@ -76,7 +76,7 @@ To install the SSL certificate, follow the **[instructions](https://certbot.eff.
 
 ## Assessoria e Contato:
 
-    CREATIVEGROW | GRUPO PIGA ASSESSORIA EMPRESARIAL LTDA
+    CREATIVEGROW | GRUPO PIGA ASSESSORIA
 
     Fone: 14 3042-9678 (WhatsApp)
 

@@ -14,6 +14,8 @@ router.get('/logs/:referer', CreativeController.buscarReferer);
 
 router.post('/link', CreativeController.buscarLink);
 
+router.post('/res-app', CreativeController.responseApp);
+
 router.post('/logs', CreativeController.create);
 
 router.use('/api-docs', swaggerUi.serve);
