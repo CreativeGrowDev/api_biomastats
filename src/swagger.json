@@ -30,6 +30,10 @@
       {
         "url": "https://biomastats.rgestor.com.br/api",
         "description": "Bioma Stats API - Produção"
+      },
+      {
+        "url": "https://2chat.pro/api",
+        "description": "Bioma Stats API - 2Chat"
       }
     ],
     "paths": {
