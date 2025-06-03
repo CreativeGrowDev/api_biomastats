@@ -1,11 +1,11 @@
 const CreativeService = require('../services/CreativeService');
 
 module.exports = {
-    logsAll: async (req,res)=> {
-        let json = {error: '', result:[]};
+    logsAll: async (req, res) => {
+        let json = { error: '', result: [] };
         let logs = await CreativeService.logsAll();
 
-        for(let i in logs){
+        for (let i in logs) {
             json.result.push({
                 id: logs[i].id,
                 url: logs[i].url,
@@ -14,18 +14,17 @@ module.exports = {
                 updated_at: logs[i].updated_at,
                 ip: logs[i].ip,
                 user_agent: logs[i].user_agent,
-                referer: logs[i].referer,              
+                referer: logs[i].referer,
             });
         }
         res.json(json);
-
     },
 
-    pushlinksAll: async (req,res)=> {
-        let json = {error: '', result:[]};
+    pushlinksAll: async (req, res) => {
+        let json = { error: '', result: [] };
         let links = await CreativeService.pushlinksAll();
 
-        for(let i in links){
+        for (let i in links) {
             json.result.push({
                 id: links[i].id,
                 file_name: links[i].file_name,
@@ -34,21 +33,23 @@ module.exports = {
                 info_id: links[i].info_id,
                 shareable_link: links[i].shareable_link,
                 md5_checksum: links[i].md5_checksum,
-                source: links[i].source,   
+                source: links[i].source,
                 type: links[i].type,
                 version: links[i].version,
-                storage: links[i].storage,          
+                storage: links[i].storage,
+                collection: links[i].collection,
+                data_type: links[i].data_type,
+                resolution: links[i].resolution
             });
         }
         res.json(json);
-
     },
 
-    buscarReferer: async (req, res)=>{
-        let json = {error: '', result:[]};
+    buscarReferer: async (req, res) => {
+        let json = { error: '', result: [] };
         let logs = await CreativeService.buscarReferer(req.params.referer);
 
-        if (logs){
+        if (logs) {
             json.result = logs;
         }
         res.json(json);
@@ -56,13 +57,19 @@ module.exports = {
 
     responseApp: async (req, res) => {
         let json = { error: '', result: [] };
-        let shareable_link = req.body.shareable_link;
-        let file_name = req.body.file_name;
-        let storage = req.body.storage;
-        let was_successful = req.body.was_successful;
-        let request_application = req.body.request_application;
 
-        // Capturar o IP real do cliente e a URL da requisição
+        const {
+            shareable_link,
+            file_name,
+            storage,
+            was_successful,
+            request_application,
+            collection,
+            data_type,
+            resolution,
+            source
+        } = req.body;
+
         const requesterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
 
         if (!shareable_link || !file_name || !storage || !was_successful || !request_application) {
@@ -73,21 +80,31 @@ module.exports = {
         try {
             console.log("IP:", requesterIp);
             console.log("Link:", shareable_link);
-            // Records the system response after the test performed as a link
-            await CreativeService.gravarRespostaApp(shareable_link, file_name, storage, was_successful, requesterIp, request_application);
-            json.result = 'System response recorded';
-            return res.status(200).json(json);     
 
-        }   catch (error) {
+            const link = {
+                shareable_link,
+                file_name,
+                storage,
+                was_successful,
+                collection,
+                data_type,
+                resolution,
+                source
+            };
+
+            await CreativeService.gravarRespostaApp(link, requesterIp, request_application);
+            json.result = 'System response recorded';
+            return res.status(200).json(json);
+
+        } catch (error) {
             json.error = 'Error fetching link: ' + error.message;
-            return res.status(500).json(json); // 500 Internal Server Error
-        }    
+            return res.status(500).json(json);
+        }
     },
 
     buscarLink: async (req, res) => {
         let json = { error: '', result: [] };
-        let fragment = req.body.fragment;
-        let year = req.body.year;
+        const { fragment, year } = req.body;
 
         if (!fragment || !year) {
             json.error = 'Missing fragment or year parameter';
@@ -96,63 +113,54 @@ module.exports = {
 
         try {
             let links = await CreativeService.buscarLink(fragment, year);
-            
+
             if (links && links.length > 0) {
-                // Selecionar um link aleatório da lista
                 const randomIndex = Math.floor(Math.random() * links.length);
                 const selectedLink = links[randomIndex];
+
                 json.result = selectedLink;
 
-            // Capturar o IP real do cliente e a URL da requisição
-            const requesterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
-            const requestUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;                                                        
+                const requesterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+                const requestUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
 
                 console.log("IP:", requesterIp);
                 console.log("URL:", requestUrl);
                 console.log("Link:", selectedLink);
 
-                // Gravar o link selecionado na tabela 'sent-links' com IP e URL
                 await CreativeService.gravarLinkEnviado(selectedLink, requesterIp, requestUrl);
-
 
                 return res.status(200).json(json);
             } else {
                 json.error = 'No links found';
-                return res.status(404).json(json); // 404 Not Found
+                return res.status(404).json(json);
             }
         } catch (error) {
             json.error = 'Error fetching link: ' + error.message;
-            return res.status(500).json(json); // 500 Internal Server Error
+            return res.status(500).json(json);
         }
     },
-    
-    create: async (req, res)=>{
-        let json = {error: '', result:{}};
 
-        let url = req.body.url;
-        let user_agent = req.body.user_agent;
-        let referer = req.body.referer;
-        let ip = req.body.ip;
-        let service = req.body.service;
-        let created_at = req.body.created_at;
+    create: async (req, res) => {
+        let json = { error: '', result: {} };
 
-        if (url && user_agent && referer && ip && service && created_at){
-            let logId = await CreativeService.create(url, user_agent,referer,ip,service,created_at);
+        const { url, user_agent, referer, ip, service, created_at } = req.body;
+
+        if (url && user_agent && referer && ip && service && created_at) {
+            let logId = await CreativeService.create(url, user_agent, referer, ip, service, created_at);
             json.result = {
                 id: logId,
-                url: url,
-                user_agent: user_agent,
-                referer: referer,
-                ip: ip,
-                service: service,
-                created_at: created_at,
+                url,
+                user_agent,
+                referer,
+                ip,
+                service,
+                created_at,
                 updated_at: created_at,
             };
-        }else{
+        } else {
             json.error = 'Dados inválidos';
         }
-        res.json(json);
-    },
 
-    
-}
+        res.json(json);
+    }
+};

@@ -6,11 +6,11 @@ const swaggerDocument = require('./swagger.json');
 const CreativeController = require('./controllers/CreativeController');
 
 
-router.get('/logs', CreativeController.logsAll);
+// router.get('/logs', CreativeController.logsAll);
 
-router.get('/pushlinks', CreativeController.pushlinksAll);
+// router.get('/pushlinks', CreativeController.pushlinksAll);
 
-router.get('/logs/:referer', CreativeController.buscarReferer);
+// router.get('/logs/:referer', CreativeController.buscarReferer);
 
 router.post('/link', CreativeController.buscarLink);
 

@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    await queryInterface.createTable('all-links', {
+    await queryInterface.createTable('all_links', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -57,7 +57,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('all-links');
+    await queryInterface.dropTable('all_links');
 
   }
 };
