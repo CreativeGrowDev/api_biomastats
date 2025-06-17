@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  api-biomastats:
+    image: ronandepaula/api-biomastats:v3.0.0
+    container_name: api-biomastats
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 9000:9000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.biomastats.rule=Host(`api.biomastats.com.br`)
+      - traefik.http.routers.biomastats.entrypoints=websecure
+      - traefik.http.routers.biomastats.tls.certresolver=letsencryptresolver
+      - traefik.http.routers.biomastats.priority=1
+      - traefik.http.routers.biomastats.service=biomastats
+      - traefik.http.services.biomastats.loadbalancer.server.port=9000
+      - traefik.http.routers.biomastats.tls=true
+      - traefik.http.services.biomastats.loadbalancer.passHostHeader=true
+      - traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https
+      - traefik.http.routers.biomastats.middlewares=sslheader
+
+    networks:
+      - redeserver
+
+networks:
+  redeserver:
+    external: true

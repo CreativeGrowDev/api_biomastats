@@ -8,7 +8,7 @@
       "name": "CeMECA",
       "url": "https://www.cemeca.ufscar.br/"
     },
-    "version": "1.0.0",
+    "version": "2.0.0",
     "contact": {
       "name": "API Bioma Stats - Support",
       "email": "iuri@ufscar.br",
@@ -24,16 +24,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:9000/api",
+      "url": "http://104.131.175.132:9000/api",
       "description": "Bioma Stats API - Homologação"
     },
     {
-      "url": "https://biomastats.rgestor.com.br/api",
+      "url": "https://api.biomastats.com.br/api",
       "description": "Bioma Stats API - Produção"
-    },
-    {
-      "url": "https://2chat.pro/api",
-      "description": "Bioma Stats API - 2Chat"
     }
   ],
   "paths": {
